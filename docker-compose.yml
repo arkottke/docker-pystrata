@@ -12,8 +12,7 @@ services:
       - BUCKET_NAME=docker-pystrata-test
       - MODE_STR=
       - LOCAL_MODE=1
-      - MOTION=m5p0-*
-      - PROFILE=middle.pkl
+      - WORK_ITEM=middle.pkl m5p0-*
     volumes:
       - ./data/motions:/work/motions:ro
       - ./data/profiles:/work/profiles:ro

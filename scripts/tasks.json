@@ -1,11 +1,11 @@
 {
   "programName": "run pyStrata",
   "$schema": "tasks.schema.json",
-  "itemName": "${PROFILE} ${MOTION}",
+  "itemName": "${WORK_ITEM}",
   "tasks": [
     {
       "name": "run pystrata",
-      "command": "python /opt/cloudburst/do_site_response.py ${PROFILE} ${MOTION}"
+      "command": "python /opt/cloudburst/do_site_response.py ${WORK_ITEM}"
     }
   ]
 }

@@ -7,14 +7,8 @@ import numpy as np
 
 from pathlib import Path
 
-
-if len(sys.argv) > 1:
-    name_profile, name_motion = sys.argv[1:]
-else:
-    name_profile = os.environ["PROFILE"]
-    name_motion = os.environ["MOTION"]
-
-print(f"Running analysis for profile '{name_profile}' and motion '{name_motion}'")
+fname_profile, fname_motion = sys.argv[1:]
+print(f"Running analysis for profile '{fname_profile}' and motion '{fname_motion}'")
 
 
 def load_motion(fpath):
@@ -30,18 +24,20 @@ def load_motion(fpath):
 # Load the motions. One or many
 motions = dict()
 path_motions = Path("motions")
-if "*" in name_motion:
+if "*" in fname_motion:
     motions = {
-        fpath.name: load_motion(fpath) for fpath in path_motions.glob(name_motion)
+        fpath.stem: load_motion(fpath) for fpath in path_motions.glob(fname_motion)
     }
 else:
-    motions[name_motion] = load_motion(path_motions / name_motion)
+    fpath_motion = path_motions / fname_motion
+    motions[fpath_motion.stem] = load_motion(fpath_motion)
 
 
 # Load the profiles
-path_profiles = Path("profiles")
-with (path_profiles / name_profile).open("rb") as fp:
+path_profiles = Path("profiles") / fname_profile
+with path_profiles.open("rb") as fp:
     profiles = dill.load(fp)
+name_profile = path_profiles.stem
 
 # Configure the output
 calc = pystrata.propagation.EquivalentLinearCalculator()

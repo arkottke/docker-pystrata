@@ -3,7 +3,16 @@ FROM python:3.10.1-slim-bullseye
 RUN apt-get update && \
     apt-get install -y p7zip bash
 
-RUN pip3 install --upgrade boto3 jsonschema
+RUN pip install --upgrade pip && \
+    pip install --upgrade \
+        boto3 \
+        jsonschema \
+        pyrvt \
+        pyexcel \
+        pandas \
+        dill && \
+    # Use the main branch of pyStrata
+    pip install https://github.com/arkottke/pystrata/archive/main.zip
 
 COPY scripts /opt/cloudburst
 RUN mkdir /work

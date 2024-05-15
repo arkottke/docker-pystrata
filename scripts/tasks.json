@@ -1,16 +1,11 @@
 {
-    "programName" : "run PS",
-    "$schema": "tasks.schema.json",
-    "itemName" : "${WORK_ITEM}",
-    "tasks": [
-        {
-            "name" : "a_simple_task",
-            "command" : "ls -l"
-        },
-        {
-            "name" : "long_running_task_interrupted_by_timeout",
-            "command" : "sleep 5",
-            "timeout": 3
-        }
-    ]
+  "programName": "run pyStrata",
+  "$schema": "tasks.schema.json",
+  "itemName": "${PROFILE} ${MOTION}",
+  "tasks": [
+    {
+      "name": "run pystrata",
+      "command": "python /opt/cloudburst/do_site_response.py ${PROFILE} ${MOTION}"
+    }
+  ]
 }

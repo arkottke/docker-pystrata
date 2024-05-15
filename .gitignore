@@ -2,8 +2,10 @@
 *.tmp/
 
 scripts/__pycache__/
-terraform/.terraform/providers/
-docs/~$zCloudFramework.docx
-periods.tmp
+scripts/.python-version
 
-*.idea/
+terraform/.terraform/providers/
+
+data/output
+
+

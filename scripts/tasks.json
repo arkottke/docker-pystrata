@@ -1,0 +1,16 @@
+{
+    "programName" : "run PS",
+    "$schema": "tasks.schema.json",
+    "itemName" : "${WORK_ITEM}",
+    "tasks": [
+        {
+            "name" : "a_simple_task",
+            "command" : "ls -l"
+        },
+        {
+            "name" : "long_running_task_interrupted_by_timeout",
+            "command" : "sleep 5",
+            "timeout": 3
+        }
+    ]
+}

@@ -11,10 +11,10 @@ services:
       - AWS_REGION=us-west-2
       - BUCKET_NAME=docker-pystrata-test
       - MODE_STR=
-      - LOCAL_MODE=0
+      - LOCAL_MODE=1
       - WORK_ITEM=middle/m5p0*
     volumes:
       # Enable if LOCAL_MODE=1 to use local files
-      # - ./data/input:/work/input:ro
+      - ./data/input:/work/input:ro
       - ./data/output:/work/output:rw
       - ~/.aws/credentials:/root/.aws/credentials:ro

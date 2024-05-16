@@ -1,20 +1,20 @@
 services:
-  cloudburst1:
+  cloudburst:
     build:
       context: .
       network: host
     shm_size: "1gb"
-    image: cloudburst1
+    image: cloudburst
     stdin_open: true # docker run -i
     tty: true # docker run -t
     environment:
       - AWS_REGION=us-west-2
       - BUCKET_NAME=docker-pystrata-test
       - MODE_STR=
-      - LOCAL_MODE=1
-      - WORK_ITEM=middle.pkl m5p0-*
+      - LOCAL_MODE=0
+      - WORK_ITEM=middle/m5p0*
     volumes:
-      - ./data/motions:/work/motions:ro
-      - ./data/profiles:/work/profiles:ro
+      # Enable if LOCAL_MODE=1 to use local files
+      # - ./data/input:/work/input:ro
       - ./data/output:/work/output:rw
       - ~/.aws/credentials:/root/.aws/credentials:ro

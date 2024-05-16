@@ -10,7 +10,7 @@ from pathlib import Path
 mags = [5, 6, 7]
 dists = [10, 30, 80]
 
-outpath = Path("../data/motions")
+outpath = Path(__file__).parent / "../data/input/motions"
 
 if not outpath.exists():
     outpath.mkdir(parents=True)

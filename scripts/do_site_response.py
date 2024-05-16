@@ -1,5 +1,4 @@
 import sys
-import os
 import pystrata
 import dill
 
@@ -7,7 +6,7 @@ import numpy as np
 
 from pathlib import Path
 
-fname_profile, fname_motion = sys.argv[1:]
+fname_profile, fname_motion = sys.argv[1].split("/")
 print(f"Running analysis for profile '{fname_profile}' and motion '{fname_motion}'")
 
 
@@ -23,7 +22,7 @@ def load_motion(fpath):
 
 # Load the motions. One or many
 motions = dict()
-path_motions = Path("motions")
+path_motions = Path("input/motions")
 if "*" in fname_motion:
     motions = {
         fpath.stem: load_motion(fpath) for fpath in path_motions.glob(fname_motion)
@@ -34,7 +33,7 @@ else:
 
 
 # Load the profiles
-path_profiles = Path("profiles") / fname_profile
+path_profiles = Path("input/profiles") / (fname_profile + ".pkl")
 with path_profiles.open("rb") as fp:
     profiles = dill.load(fp)
 name_profile = path_profiles.stem

@@ -1,6 +1,7 @@
-DEPLOYMENT_ID=cloudburst1
-AWS_ID=<your_aws_ID_here>
-AWS_REGION=us-west-1
+DEPLOYMENT_ID=cloudburst
+#AWS_ID=<YOUR_ACCOUNT_ID_HERE>
+AWS_ID=939369860757
+AWS_REGION=us-west-2
 
 ECR_REPO_ID=$(DEPLOYMENT_ID)
 ECR_REPO_URL=$(AWS_ID).dkr.ecr.$(AWS_REGION).amazonaws.com
@@ -17,10 +18,8 @@ run: build
 test: build
 	docker compose up --remove-orphans $(DEPLOYMENT_ID)
 
-terraform:
-	cd terraform
-	terraform apply
-	cd ..
+terraform-apply:
+	cd terraform; terraform init; terraform plan; terraform apply
 
 push: build
 	aws ecr get-login-password --region $(AWS_REGION) | docker login --username AWS --password-stdin $(ECR_REPO_URL)

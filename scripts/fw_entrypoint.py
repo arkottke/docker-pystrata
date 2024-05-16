@@ -47,13 +47,19 @@ def main():
         for element in cfg:
             try:
                 if element == "fetch":
-                    fetches = cfg[element]
-                    return_code = fwlib.process_fetches(mode_str, fetches, errors_found)
-
-                    if disk_stats:
-                        os.system(
-                            "echo disk space: && df -h && echo disk usage: && du -ch"
+                    if not local_mode:
+                        fetches = cfg[element]
+                        return_code = fwlib.process_fetches(
+                            mode_str, fetches, errors_found
                         )
+
+                        if disk_stats:
+                            os.system(
+                                "echo disk space: && df -h && echo disk usage: && du -ch"
+                            )
+                    else:
+                        return_code = 0
+                        print("skipping fetch tasks in local mode")
                 elif element == "tasks":
                     tasks_processing = cfg[element]
                     return_code = fwlib.run_tasks(

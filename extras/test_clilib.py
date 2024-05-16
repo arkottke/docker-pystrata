@@ -28,23 +28,23 @@ def testCompress():
 
 
 def testUploadCode():
-    clilib.upload_code("haz-test.us-west-1")
+    clilib.upload_code("haz-test.us-west-2")
 
 
 def testUploadInputs():
-    clilib.uploadInputs("haz-test.us-west-1", sitesOnly=True)
+    clilib.uploadInputs("haz-test.us-west-2", sitesOnly=True)
 
 
 def testStartJobs():
     clilib.startJobs(
-        bucket_name="haz-test.us-west-1", siteList="00001-00009", test=True
+        bucket_name="haz-test.us-west-2", siteList="00001-00009", test=True
     )
 
 
 def testGetOutputs():
     # clilib.unzipOutputs(localPath='./InputData.tmp', outputDir='./outputs.tmp/foo', test=True)
-    #    clilib.getOutputs(bucket_name='haz-test.us-west-1', getFaultsOnly=True, test=True, clean = True, downloadOnly=True)
-    clilib.getOutputs(bucket_name="haz-test.us-west-1", clean=True, downloadOnly=True)
+    #    clilib.getOutputs(bucket_name='haz-test.us-west-2', getFaultsOnly=True, test=True, clean = True, downloadOnly=True)
+    clilib.getOutputs(bucket_name="haz-test.us-west-2", clean=True, downloadOnly=True)
 
 
 def testExpandOutputs():

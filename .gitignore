@@ -3,9 +3,10 @@
 
 scripts/__pycache__/
 scripts/.python-version
+.python-version
 
 terraform/.terraform/providers/
 
-data/output
+data/*
 
 

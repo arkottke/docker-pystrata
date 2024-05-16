@@ -127,7 +127,13 @@ def main(args):
             for name_value in args.name_values:
                 env_vars.append({"name": name_value[0], "value": name_value[1]})
 
-        job_name = work_item.replace("/", "_")
+        # Need to remove certain characters from the job name
+        job_name = (
+            work_item.replace("/", "_")
+            .replace(" ", "_")
+            .replace("*", "X")
+            .replace("_", "p")
+        )
 
         if args.apply:
             response = client.submit_job(

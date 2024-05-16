@@ -9,7 +9,7 @@ from scipy.stats import lognorm
 
 from pathlib import Path
 
-outpath = Path("../data/profiles")
+outpath = Path(__file__).parent / "../data/input/profiles"
 
 if not outpath.exists():
     outpath.mkdir(parents=True)
